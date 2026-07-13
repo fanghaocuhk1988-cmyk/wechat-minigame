@@ -1,0 +1,379 @@
+:root {
+  --ink: #1f2933;
+  --muted: #607080;
+  --paper: #f7fbfc;
+  --panel: rgba(255, 255, 255, 0.9);
+  --line: rgba(42, 66, 80, 0.16);
+  --shadow: 0 18px 46px rgba(20, 43, 58, 0.18);
+  --soft-shadow: 0 8px 20px rgba(20, 43, 58, 0.12);
+  --accent: #4d9bb6;
+  --accent-dark: #2e7188;
+  font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.9), transparent 24%),
+    radial-gradient(circle at 78% 12%, rgba(255, 255, 255, 0.7), transparent 22%),
+    linear-gradient(160deg, #bfdfea 0%, #e9d9ba 58%, #c9d7be 100%);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+}
+
+.game {
+  width: min(100%, 430px);
+  min-height: min(100vh - 24px, 820px);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 10px;
+}
+
+.topbar,
+.hud,
+.controls {
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--soft-shadow);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.level-chip {
+  min-width: 68px;
+  min-height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: #e8f5f7;
+  color: var(--accent-dark);
+}
+
+.level-chip span {
+  font-size: 11px;
+}
+
+.level-chip strong {
+  font-size: 22px;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+}
+
+.hud div {
+  min-height: 54px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.hud span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.hud strong {
+  font-size: 18px;
+}
+
+.board {
+  position: relative;
+  min-height: 340px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(88px, 1fr));
+  align-content: center;
+  justify-items: center;
+  gap: 28px 18px;
+  padding: 26px 14px 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(76, 94, 102, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.1)),
+    rgba(230, 243, 244, 0.52);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.board.bottles-4 {
+  grid-template-columns: repeat(2, minmax(104px, 1fr));
+  align-content: center;
+  gap: 26px 34px;
+  padding-left: 44px;
+  padding-right: 44px;
+}
+
+.board::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 29px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(54, 75, 82, 0.12);
+}
+
+.bottle {
+  position: relative;
+  width: 78px;
+  height: 178px;
+  padding: 0;
+  background: transparent;
+  transform-origin: center bottom;
+  transition:
+    transform 180ms ease,
+    filter 180ms ease;
+}
+
+.bottle.selected {
+  transform: translateY(-12px);
+  filter: drop-shadow(0 12px 16px rgba(43, 93, 111, 0.24));
+}
+
+.bottle.pour {
+  animation: pourWiggle 280ms ease;
+}
+
+@keyframes pourWiggle {
+  0% {
+    transform: translateY(-12px) rotate(0deg);
+  }
+  48% {
+    transform: translateY(-18px) rotate(-10deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.glass {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 150px;
+  border: 3px solid rgba(39, 65, 76, 0.48);
+  border-top: 0;
+  border-radius: 0 0 23px 23px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.13));
+  overflow: hidden;
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 15px;
+  bottom: 18px;
+  width: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  z-index: 4;
+}
+
+.neck {
+  position: absolute;
+  left: 23px;
+  top: 0;
+  width: 32px;
+  height: 34px;
+  border: 3px solid rgba(39, 65, 76, 0.48);
+  border-bottom: 0;
+  border-radius: 13px 13px 0 0;
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.liquid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 25%;
+  transition:
+    bottom 220ms ease,
+    transform 220ms ease,
+    opacity 180ms ease;
+}
+
+.liquid::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.liquid.red {
+  background: #e85f6a;
+}
+
+.liquid.blue {
+  background: #4aa2d9;
+}
+
+.liquid.yellow {
+  background: #f0c85a;
+}
+
+.liquid.green {
+  background: #65b96f;
+}
+
+.liquid.purple {
+  background: #9572d3;
+}
+
+.liquid.orange {
+  background: #ef9456;
+}
+
+.complete .glass {
+  border-color: rgba(74, 135, 94, 0.7);
+}
+
+.complete::after {
+  content: "";
+  position: absolute;
+  left: 23px;
+  right: 23px;
+  bottom: -21px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(101, 185, 111, 0.2);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
+
+.controls button {
+  min-height: 46px;
+  border-radius: 8px;
+  background: #f8fbfb;
+  box-shadow: inset 0 -2px 0 rgba(50, 72, 81, 0.1);
+  font-weight: 700;
+}
+
+.controls button:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 0 rgba(50, 72, 81, 0.08);
+}
+
+.controls button:disabled {
+  opacity: 0.48;
+  cursor: default;
+}
+
+#nextBtn {
+  background: #cbe8df;
+  color: #245f53;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  width: max-content;
+  max-width: min(360px, calc(100vw - 32px));
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(31, 41, 51, 0.92);
+  color: #f7fbfc;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 370px) {
+  .app {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .board {
+    grid-template-columns: repeat(3, minmax(76px, 1fr));
+    gap: 20px 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .board.bottles-4 {
+    grid-template-columns: repeat(2, minmax(92px, 1fr));
+    gap: 20px 18px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .bottle {
+    width: 70px;
+    height: 168px;
+  }
+
+  .controls {
+    gap: 6px;
+  }
+
+  .controls button {
+    font-size: 13px;
+  }
+}
