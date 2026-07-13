@@ -1,0 +1,43 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dependencies
+node_modules/
+miniprogram_npm/
+
+# Build output
+dist/
+build/
+release/
+coverage/
+
+# Local environment
+.env
+.env.*
+!.env.example
+*.local
+
+# WeChat DevTools local config
+project.private.config.json
+
+# Temporary files
+.cache/
+.temp/
+tmp/
+temp/
+
