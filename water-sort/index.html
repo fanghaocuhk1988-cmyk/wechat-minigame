@@ -11,38 +11,71 @@
     <main class="app" aria-label="倒水排序小游戏原型">
       <section class="game">
         <header class="topbar">
-          <div>
-            <h1>倒水排序</h1>
-            <p id="statusText">点击源瓶，再点击目标瓶</p>
+          <button class="gear-btn" type="button" aria-label="设置">⚙</button>
+          <div class="resource-pill coin-pill" aria-label="金币">
+            <span class="coin-icon"></span>
+            <strong>60</strong>
           </div>
-          <div class="level-chip">
-            <span>关卡</span>
-            <strong id="levelText">1</strong>
+          <div class="resource-pill heart-pill" aria-label="体力">
+            <span class="heart-icon">5</span>
+            <strong>满</strong>
           </div>
         </header>
 
-        <section class="hud" aria-label="本局状态">
-          <div>
-            <span>步数</span>
-            <strong id="moveText">0</strong>
+        <section class="boosters" aria-label="道具栏">
+          <div class="booster blue"></div>
+          <div class="booster yellow">
+            <span class="lock"></span>
           </div>
-          <div>
-            <span>用时</span>
-            <strong id="timeText">0s</strong>
+          <div class="booster gray">
+            <span class="play-badge">▶</span>
+            <span>解锁</span>
           </div>
-          <div>
-            <span>目标</span>
-            <strong id="targetText">10s</strong>
+          <div class="booster gray">
+            <span class="play-badge">▶</span>
+            <span>解锁</span>
           </div>
         </section>
 
-        <section class="board" id="board" aria-label="倒水瓶子区域"></section>
+        <section class="stage" aria-label="关卡区域">
+          <div class="stage-title">
+            <strong>关卡 <span id="levelText">1</span></strong>
+            <span id="statusText">点击源瓶，再点击目标瓶</span>
+          </div>
+          <section class="hud" aria-label="本局状态">
+            <div>
+              <span>步数</span>
+              <strong id="moveText">0</strong>
+            </div>
+            <div>
+              <span>用时</span>
+              <strong id="timeText">0s</strong>
+            </div>
+            <div>
+              <span>目标</span>
+              <strong id="targetText">10s</strong>
+            </div>
+          </section>
+          <section class="board" id="board" aria-label="倒水瓶子区域"></section>
+        </section>
 
         <section class="controls" aria-label="操作">
-          <button id="undoBtn" type="button">撤销</button>
-          <button id="restartBtn" type="button">重来</button>
-          <button id="nextBtn" type="button">下一关</button>
-          <button id="soundBtn" type="button" aria-label="声音开关">声音</button>
+          <button id="undoBtn" class="tool-btn" type="button">
+            <span class="btn-icon">↶</span>
+            <strong>撤回</strong>
+          </button>
+          <button id="restartBtn" class="tool-btn primary-tool" type="button">
+            <span class="btn-icon">⟳</span>
+            <strong>刷新</strong>
+          </button>
+          <button id="nextBtn" class="tool-btn add-tool" type="button">
+            <span class="btn-icon">＋</span>
+            <strong>增加</strong>
+          </button>
+          <button id="soundBtn" class="tool-btn sound-tool" type="button" aria-label="声音开关">
+            <span class="btn-icon">♪</span>
+            <strong>声音</strong>
+          </button>
         </section>
       </section>
     </main>

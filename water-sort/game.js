@@ -118,7 +118,9 @@ function render() {
   nodes.targetText.textContent = `${levels[levelIndex].target}s`;
   nodes.undoBtn.disabled = history.length === 0;
   nodes.nextBtn.disabled = !isSolved();
-  nodes.soundBtn.textContent = soundOn ? "声音" : "静音";
+  nodes.soundBtn.setAttribute("aria-label", soundOn ? "关闭声音" : "开启声音");
+  const soundLabel = nodes.soundBtn.querySelector("strong");
+  if (soundLabel) soundLabel.textContent = soundOn ? "声音" : "静音";
 
   bottles.forEach((bottle, index) => {
     const button = document.createElement("button");
