@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>猫狗小院 - 第一版原型</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-label="猫狗治愈小院第一版原型">
+      <section class="game">
+        <header class="topbar">
+          <div class="brand">
+            <span class="brand-mark" aria-hidden="true">paw</span>
+            <div>
+              <h1>猫狗小院</h1>
+              <p id="dailyLine">今天也来照顾它们一下</p>
+            </div>
+          </div>
+          <div class="stats" aria-label="资源">
+            <span><strong id="heartCount">0</strong> 爱心</span>
+            <span><strong id="materialCount">0</strong> 材料</span>
+          </div>
+        </header>
+
+        <section class="yard" aria-label="小院主场景">
+          <div class="sky">
+            <span class="cloud cloud-a"></span>
+            <span class="cloud cloud-b"></span>
+            <span class="sun"></span>
+          </div>
+
+          <button class="pet cat" id="catPet" type="button" aria-label="照顾小猫">
+            <span class="pet-shadow"></span>
+            <span class="pet-body">
+              <span class="ear left"></span>
+              <span class="ear right"></span>
+              <span class="face">
+                <span class="eye left"></span>
+                <span class="eye right"></span>
+                <span class="mouth"></span>
+              </span>
+              <span class="tail"></span>
+            </span>
+            <span class="pet-name">栗子</span>
+          </button>
+
+          <button class="pet dog" id="dogPet" type="button" aria-label="照顾小狗">
+            <span class="pet-shadow"></span>
+            <span class="pet-body">
+              <span class="ear left"></span>
+              <span class="ear right"></span>
+              <span class="face">
+                <span class="eye left"></span>
+                <span class="eye right"></span>
+                <span class="mouth"></span>
+              </span>
+              <span class="tail"></span>
+            </span>
+            <span class="pet-name">豆包</span>
+          </button>
+
+          <div class="yard-items" aria-hidden="true">
+            <span class="bowl bowl-left"></span>
+            <span class="bowl bowl-right"></span>
+            <span class="toy-ball"></span>
+            <span class="plant plant-left"></span>
+            <span class="plant plant-right"></span>
+          </div>
+
+          <div class="speech" id="speech">点猫或狗，先喂一口</div>
+        </section>
+
+        <section class="goal-strip" aria-label="当前小目标">
+          <div>
+            <span class="label">今日小目标</span>
+            <strong id="goalText">照顾猫狗 3 次</strong>
+          </div>
+          <button id="surpriseBtn" class="soft-btn" type="button">今日小惊喜</button>
+        </section>
+
+        <section class="actions" aria-label="照顾动作">
+          <button class="care-btn" data-care="catFood" type="button">
+            <span>猫粮</span>
+            <strong id="catFoodCount">0</strong>
+          </button>
+          <button class="care-btn" data-care="dogFood" type="button">
+            <span>狗粮</span>
+            <strong id="dogFoodCount">0</strong>
+          </button>
+          <button class="care-btn" data-care="water" type="button">
+            <span>添水</span>
+            <strong id="waterCount">0</strong>
+          </button>
+          <button class="care-btn" data-care="toy" type="button">
+            <span>玩具</span>
+            <strong id="toyCount">0</strong>
+          </button>
+        </section>
+
+        <section class="merge-panel" aria-label="用品合成">
+          <div class="panel-title">
+            <h2>用品合成</h2>
+            <button id="soundBtn" class="icon-btn" type="button" aria-label="声音开关">声</button>
+          </div>
+          <div class="merge-grid">
+            <button class="merge-btn" data-make="catFood" type="button">
+              <span class="item-icon fish"></span>
+              <span>合成猫粮</span>
+              <small>2 材料</small>
+            </button>
+            <button class="merge-btn" data-make="dogFood" type="button">
+              <span class="item-icon bone"></span>
+              <span>合成狗粮</span>
+              <small>2 材料</small>
+            </button>
+            <button class="merge-btn" data-make="water" type="button">
+              <span class="item-icon cup"></span>
+              <span>装满水碗</span>
+              <small>1 材料</small>
+            </button>
+            <button class="merge-btn" data-make="toy" type="button">
+              <span class="item-icon yarn"></span>
+              <span>做个玩具</span>
+              <small>3 材料</small>
+            </button>
+          </div>
+        </section>
+
+        <footer class="footer-actions">
+          <button id="collectBtn" class="soft-btn primary" type="button">整理小篮子</button>
+          <button id="adMockBtn" class="soft-btn" type="button">看广告多拿 6 材料</button>
+        </footer>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="game.js"></script>
+  </body>
+</html>
